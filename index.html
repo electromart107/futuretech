@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Test Store</title>
+    <title>Future Tech Test Store</title>
     <!-- Facebook Pixel Code -->
     <script>
         !function(f,b,e,v,n,t,s)
@@ -12,43 +12,43 @@
         t.src=v;s=b.getElementsByTagName(e)[0];
         s.parentNode.insertBefore(t,s)}(window, document,'script',
         'https://connect.facebook.net/en_US/fbevents.js');
-        // Yahan apna Pixel ID daalein
-        fbq('init', '<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '784575147932063');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=784575147932063&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->');
+        // REPLACE 'YOUR_PIXEL_ID' with your actual Pixel ID
+        fbq('init', '784975147930035');
         fbq('track', 'PageView');
     </script>
     <noscript>
         <img height="1" width="1" style="display:none" 
-             src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID_HERE&ev=PageView&noscript=1"/>
+             src="https://www.facebook.com/tr?id=784975147930035&ev=PageView&noscript=1"/>
     </noscript>
     <!-- Pixel Code End -->
 </head>
 <body>
     <h1>My Test E-commerce Store</h1>
     
-    <button onclick="fbq('track', 'ViewContent')">View Product</button>
+    <button onclick="triggerEvent('ViewContent')">View Product</button>
     <br><br>
-    <button onclick="fbq('track', 'AddToCart')">Add to Cart</button>
+    <button onclick="triggerEvent('AddToCart')">Add to Cart</button>
     <br><br>
-    <button onclick="fbq('track', 'InitiateCheckout')">Checkout</button>
+    <button onclick="triggerEvent('InitiateCheckout')">Checkout</button>
     <br><br>
-    <button onclick="fbq('track', 'Purchase', {value: 100, currency: 'PKR'})">Purchase Now</button>
+    <button onclick="triggerEvent('Purchase')">Purchase Now</button>
     
     <p>Events test karne ke liye buttons click karein.</p>
+
+    <script>
+        // Event trigger function
+        function triggerEvent(eventName) {
+            if (eventName === 'Purchase') {
+                fbq('track', 'Purchase', {value: 100, currency: 'PKR'});
+                alert('Purchase event sent!');
+            } else {
+                fbq('track', eventName);
+                alert(eventName + ' event sent!');
+            }
+            
+            // Also log to console for debugging
+            console.log('Facebook Event:', eventName);
+        }
+    </script>
 </body>
 </html>
