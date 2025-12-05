@@ -2,17 +2,22 @@
 <html>
 <head>
     <title>Future Tech Test Store</title>
+    
+    <!-- Facebook Domain Verification -->
+    <meta name="facebook-domain-verification" content="mcudyxfwapg8b8h0dd173nyssyiftk" />
+    
     <!-- Facebook Pixel Code -->
     <script>
-        !function(f,b,e,v,n,t,s)
-        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-        n.queue=[];t=b.createElement(e);t.async=!0;
-        t.src=v;s=b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t,s)}(window, document,'script',
-        'https://connect.facebook.net/en_US/fbevents.js');
-        // REPLACE 'YOUR_PIXEL_ID' with your actual Pixel ID
+        !function(f,b,e,v,n,t,s){
+            if(f.fbq)return;n=f.fbq=function(){
+                n.callMethod? n.callMethod.apply(n,arguments):n.queue.push(arguments)
+            };
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+            n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t,s)
+        }(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+        
         fbq('init', '784975147930035');
         fbq('track', 'PageView');
     </script>
@@ -21,6 +26,7 @@
              src="https://www.facebook.com/tr?id=784975147930035&ev=PageView&noscript=1"/>
     </noscript>
     <!-- Pixel Code End -->
+    
 </head>
 <body>
     <h1>My Test E-commerce Store</h1>
@@ -37,17 +43,27 @@
 
     <script>
         // Event trigger function
+        let eventSent = {};
+        
         function triggerEvent(eventName) {
-            if (eventName === 'Purchase') {
-                fbq('track', 'Purchase', {value: 100, currency: 'PKR'});
-                alert('Purchase event sent!');
-            } else {
-                fbq('track', eventName);
-                alert(eventName + ' event sent!');
+            // Prevent duplicate events in same session
+            if (eventSent[eventName]) {
+                console.log('Event already sent:', eventName);
+                return;
             }
             
-            // Also log to console for debugging
-            console.log('Facebook Event:', eventName);
+            if (eventName === 'Purchase') {
+                fbq('track', 'Purchase', {value: 100, currency: 'PKR'});
+            } else {
+                fbq('track', eventName);
+            }
+            
+            // Mark as sent
+            eventSent[eventName] = true;
+            
+            // Optional alert
+            alert(eventName + ' event sent!');
+            console.log('Facebook Event Sent:', eventName);
         }
     </script>
 </body>
